@@ -46,10 +46,11 @@ async function run() {
 
 function createModel() {
   const model = tf.sequential();// 实例化序贯模型
-  // 给模型添加输入层，dense表示的是密集层，units是权重数量
-  model.add(tf.layers.dense({inputShape: [1], units: 1, useBias: true}))
+  // 给模型添加输入层，dense表示的是密集层，units是输出空间的维度（理解成神经元的数量）
+  model.add(tf.layers.dense({inputShape: [1], units: 1, useBias: true , activation: 'sigmoid'}))
   // 添加输出层
-  model.add(tf.layers.dense({units: 1, useBias: true})); 
+
+
 
   return model
 }
@@ -95,7 +96,7 @@ async function trainModel(model, inputs, labels) {
 
   // 开始训练，每次周期结束，在tfvis中显示指标
   const batchSize = 32
-  const epochs = 50
+  const epochs = 500
   return await model.fit(inputs, labels, {
     batchSize,
     epochs,
