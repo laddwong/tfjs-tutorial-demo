@@ -1,6 +1,6 @@
 
 async function getData() {
-  const carsDataResponse = await fetch('https://storage.googleapis.com/tfjs-tutorials/carsData.json');
+  const carsDataResponse = await fetch('../data/carsData.json');
   const carsData = await carsDataResponse.json();
   const cleaned = carsData.map(car => ({
     mpg: car.Miles_per_Gallon,
@@ -47,11 +47,9 @@ async function run() {
 function createModel() {
   const model = tf.sequential();// 实例化序贯模型
   // 给模型添加输入层，dense表示的是密集层，units是输出空间的维度（理解成神经元的数量）
+  model.add(tf.layers.dense({inputShape: [1], units: 64, useBias: true , activation: 'sigmoid'}))
+  model.add(tf.layers.dense({inputShape: [1], units: 32, useBias: true , activation: 'sigmoid'}))
   model.add(tf.layers.dense({inputShape: [1], units: 1, useBias: true , activation: 'sigmoid'}))
-  // 添加输出层
-
-
-
   return model
 }
 
@@ -96,7 +94,7 @@ async function trainModel(model, inputs, labels) {
 
   // 开始训练，每次周期结束，在tfvis中显示指标
   const batchSize = 32
-  const epochs = 500
+  const epochs = 150
   return await model.fit(inputs, labels, {
     batchSize,
     epochs,
