@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <!-- Load the latest version of TensorFlow.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/knn-classifier"></script>
+  </head>
+  <body>
+    <div id="console"></div>
+    <div id="loadingBox" style="position: fixed; top: 0; left: 0; height: 100%;width: 100%;z-index: 100; background-color: #fff;">loading</div>
+    <img style="display: none;" id="img" crossorigin src="https://i.imgur.com/JlUvsxa.jpg" width="227" height="227"/>
+    <div><input type="file" name="img" id="uploadBtn" onchange="onUploadImgAndPredict(event)"></div>
+    <div>
+      <span>add A</span>
+      <input type="file" name="imgA" id="uploadBtnA" onchange="onAddClass(event, 0)">
+    </div>
+    <div>
+      <span>add B</span>
+      <input type="file" name="imgB" id="uploadBtnA" onchange="onAddClass(event, 1)">
+    </div>
+    <div>
+      <span>add C</span>
+      <input type="file" name="imgC" id="uploadBtnA" onchange="onAddClass(event, 2)">
+    </div>
+    <div><span>classify: </span><input type="file" name="classifyImg" id="uploadClassifyImg" onchange="onUploadClassifyImg(event)"></div>
+    <script src="index.js"></script>
+  </body>
+</html>
